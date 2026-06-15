@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hareshbhai Tours & Travels</title>
+<style>
+  :root{
+    --indigo:#1A2B4C;
+    --saffron:#E8923C;
+    --cream:#F7F1E3;
+    --terracotta:#C75D3A;
+    --gold:#D4AF7A;
+    --ink:#2A2118;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:Georgia,'Times New Roman',serif;
+    letter-spacing:0.5px;
+  }
+
+  /* Header */
+  header{
+    background:var(--indigo);
+    color:var(--cream);
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 12px rgba(0,0,0,0.15);
+  }
+  .logo{
+    font-family:Georgia,serif;
+    font-size:1.5rem;
+    font-weight:bold;
+    color:var(--saffron);
+  }
+  .logo span{color:var(--cream);}
+  nav a{
+    color:var(--cream);
+    text-decoration:none;
+    margin-left:28px;
+    font-size:0.95rem;
+    transition:color .2s;
+  }
+  nav a:hover{color:var(--saffron);}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(135deg, var(--indigo) 0%, #2c4570 100%);
+    color:var(--cream);
+    padding:100px 6% 80px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:6px;
+    background:repeating-linear-gradient(90deg, var(--saffron) 0 20px, var(--terracotta) 20px 40px);
+  }
+  .hero h1{
+    font-size:3rem;
+    margin-bottom:14px;
+  }
+  .hero p{
+    font-size:1.2rem;
+    color:var(--gold);
+    max-width:600px;
+    margin:0 auto 30px;
+  }
+  .btn{
+    display:inline-block;
+    background:var(--saffron);
+    color:var(--indigo);
+    padding:14px 36px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:1rem;
+    transition:transform .2s, background .2s;
+  }
+  .btn:hover{
+    background:var(--terracotta);
+    color:var(--cream);
+    transform:translateY(-3px);
+  }
+
+  /* Route line - signature element */
+  .route-section{
+    padding:70px 6%;
+    text-align:center;
+  }
+  .route-section h2{
+    font-size:2.2rem;
+    color:var(--indigo);
+    margin-bottom:50px;
+  }
+  .route-line{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:1000px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+  .route-line::before{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:0;
+    right:0;
+    height:3px;
+    background:repeating-linear-gradient(90deg, var(--terracotta) 0 12px, transparent 12px 24px);
+    z-index:0;
+  }
+  .stop{
+    background:var(--cream);
+    z-index:1;
+    text-align:center;
+    width:18%;
+  }
+  .stop .dot{
+    width:22px;
+    height:22px;
+    background:var(--saffron);
+    border:3px solid var(--indigo);
+    border-radius:50%;
+    margin:0 auto 12px;
+  }
+  .stop h3{
+    font-size:1rem;
+    color:var(--indigo);
+    margin-bottom:4px;
+  }
+  .stop p{
+    font-size:0.85rem;
+    color:#6b5c4a;
+  }
+
+  /* Services */
+  .services{
+    background:var(--indigo);
+    color:var(--cream);
+    padding:70px 6%;
+  }
+  .services h2{
+    text-align:center;
+    color:var(--saffron);
+    font-size:2.2rem;
+    margin-bottom:50px;
+  }
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:30px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .service-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--gold);
+    border-radius:10px;
+    padding:30px 24px;
+    transition:transform .25s, background .25s;
+  }
+  .service-card:hover{
+    transform:translateY(-6px);
+    background:rgba(232,146,60,0.12);
+  }
+  .service-card h3{
+    color:var(--saffron);
+    margin-bottom:10px;
+    font-size:1.2rem;
+  }
+  .service-card p{
+    font-size:0.95rem;
+    color:var(--cream);
+    opacity:0.85;
+  }
+
+  /* About */
+  .about{
+    padding:70px 6%;
+    max-width:900px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .about h2{
+    color:var(--indigo);
+    font-size:2.2rem;
+    margin-bottom:20px;
+  }
+  .about p{
+    color:#5a4a38;
+    font-size:1.05rem;
+  }
+
+  /* Gallery */
+  .gallery{
+    padding:70px 6%;
+    background:var(--gold);
+  }
+  .gallery h2{
+    text-align:center;
+    color:var(--indigo);
+    font-size:2.2rem;
+    margin-bottom:40px;
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .gallery-item{
+    background:var(--cream);
+    border-radius:8px;
+    height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Georgia,serif;
+    color:var(--indigo);
+    font-size:1.1rem;
+    box-shadow:0 4px 14px rgba(0,0,0,0.1);
+    border:2px dashed var(--terracotta);
+  }
+
+  /* Contact */
+  .contact{
+    background:linear-gradient(135deg, var(--terracotta), var(--saffron));
+    color:var(--indigo);
+    padding:70px 6%;
+    text-align:center;
+  }
+  .contact h2{
+    font-size:2.2rem;
+    margin-bottom:20px;
+    color:var(--cream);
+  }
+  .contact-info{
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    flex-wrap:wrap;
+    margin-top:30px;
+    font-size:1.05rem;
+    color:var(--cream);
+  }
+  .contact-info div strong{
+    display:block;
+    margin-bottom:6px;
+    color:var(--indigo);
+    font-family:Georgia,serif;
+  }
+
+  /* Footer */
+  footer{
+    background:var(--indigo);
+    color:var(--gold);
+    text-align:center;
+    padding:24px 6%;
+    font-size:0.9rem;
+  }
+
+  @media(max-width:768px){
+    nav{display:none;}
+    .hero h1{font-size:2.2rem;}
+    .route-line{
+      flex-direction:column;
+      gap:30px;
+    }
+    .route-line::before{
+      top:0;bottom:0;left:50%;right:auto;width:3px;height:auto;
+      background:repeating-linear-gradient(180deg, var(--terracotta) 0 12px, transparent 12px 24px);
+    }
+    .stop{width:100%;}
+    .contact-info{flex-direction:column;gap:20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Hareshbhai <span>Tours & Travels</span></div>
+  <nav>
+    <a href="#routes">Routes</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Your Journey, Our Promise</h1>
+  <p>Trusted travel & tour services across Gujarat and beyond — comfortable rides, memorable trips, fair prices.</p>
+  <a href="#contact" class="btn">Plan Your Trip</a>
+</section>
+
+<section class="route-section" id="routes">
+  <h2>Popular Routes</h2>
+  <div class="route-line">
+    <div class="stop">
+      <div class="dot"></div>
+      <h3>Jamnagar</h3>
+      <p>Home Base</p>
+    </div>
+    <div class="stop">
+      <div class="dot"></div>
+      <h3>Dwarka</h3>
+      <p>Temple Tour</p>
+    </div>
+    <div class="stop">
+      <div class="dot"></div>
+      <h3>Rajkot</h3>
+      <p>Business Trip</p>
+    </div>
+    <div class="stop">
+      <div class="dot"></div>
+      <h3>Somnath</h3>
+      <p>Pilgrimage</p>
+    </div>
+    <div class="stop">
+      <div class="dot"></div>
+      <h3>Ahmedabad</h3>
+      <p>City Transfer</p>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <h2>Our Services</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <h3>Outstation Cabs</h3>
+      <p>Comfortable sedans and SUVs for long-distance travel across Gujarat and neighbouring states.</p>
+    </div>
+    <div class="service-card">
+      <h3>Pilgrimage Tours</h3>
+      <p>Guided trips to Dwarka, Somnath, Ambaji and other sacred destinations with flexible packages.</p>
+    </div>
+    <div class="service-card">
+      <h3>Local Sightseeing</h3>
+      <p>Half-day and full-day city tours covering top attractions with an experienced driver.</p>
+    </div>
+    <div class="service-card">
+      <h3>Airport Transfers</h3>
+      <p>On-time pickup and drop services to and from all major airports, day or night.</p>
+    </div>
+    <div class="service-card">
+      <h3>Group & Family Tours</h3>
+      <p>Spacious vehicles and custom itineraries for weddings, family functions and group outings.</p>
+    </div>
+    <div class="service-card">
+      <h3>Corporate Travel</h3>
+      <p>Reliable, professional transport solutions for business meetings and corporate events.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2>About Us</h2>
+  <p>Hareshbhai Tours & Travels has been serving travellers across Gujarat with safe, comfortable and affordable transport for years. From spiritual journeys to business trips and family getaways, our well-maintained vehicles and friendly drivers make every ride a smooth one. We take pride in punctuality, transparent pricing and personal attention to every customer.</p>
+</section>
+
+<section class="gallery" id="gallery">
+  <h2>Our Fleet & Trips</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">Sedan Cars</div>
+    <div class="gallery-item">SUVs</div>
+    <div class="gallery-item">Tempo Traveller</div>
+    <div class="gallery-item">Dwarka Temple Tour</div>
+    <div class="gallery-item">Somnath Visit</div>
+    <div class="gallery-item">Family Outing</div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2>Get In Touch</h2>
+  <p>Call us to book your next trip or get a custom quote.</p>
+  <div class="contact-info">
+    <div>
+      <strong>Phone</strong>
+      +91 98XXX XXXXX
+    </div>
+    <div>
+      <strong>Email</strong>
+      hareshbhaitours@example.com
+    </div>
+    <div>
+      <strong>Location</strong>
+      Jamnagar, Gujarat, India
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Hareshbhai Tours & Travels. All rights reserved.
+</footer>
+
+</body>
+</html>
